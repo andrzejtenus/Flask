@@ -40,8 +40,16 @@ export class RegisterComponent implements OnInit {
         }
        }
 
-    register() {
+    register(username: string, password: string, confirmpassword: string): void{
         this.submitted = true;
+        console.log(username, password);
+        if (confirmpassword === password){
+            this.accountService.register(username, password).subscribe(value => {console.log(value); });
+        }
+        else {
+            console.log('Passwords must be equal');
+        }
+
 
     }
 

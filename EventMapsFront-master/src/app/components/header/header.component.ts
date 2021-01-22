@@ -23,6 +23,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.accountService.logout();
+    this.accountService.logout().subscribe(value => {console.log(value); });
   }
 }

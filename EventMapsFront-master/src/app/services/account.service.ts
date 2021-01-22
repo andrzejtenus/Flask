@@ -6,7 +6,7 @@ import {map, share} from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { User } from '../models';
-import {Token} from '@angular/compiler';
+
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
@@ -36,17 +36,18 @@ export class AccountService {
     }
 
 
-    logout(): void {
+    logout(): Observable<any> {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
         this.userSubject.next(null);
         this.router.navigate(['/account/login']);
+        return this.http.get<any>(`${environment.apiUrl}/api/logout`);
     }
 
     //register(user: User) {
     //    return this.http.post(`${environment.apiUrl}/api/register`, user);
     //}
-    register(email: string, password: string) {
+    register(email: string, password: string): Observable<any> {
         return this.http.post(`${environment.apiUrl}/api/register`, { email, password });
     }
 

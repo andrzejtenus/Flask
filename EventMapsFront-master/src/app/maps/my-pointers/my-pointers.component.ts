@@ -38,8 +38,7 @@ export class MyPointersComponent implements OnInit {
       this.filterSearchValues();
     });
 
-    this.mapPointerService.getUserPointers().subscribe(value => {this.userPointers = value;
-                                                                 console.log(value); });
+    this.mapPointerService.getUserPointers().subscribe(value => {this.userPointers = value; });
   }
 
   showOnMap(pointer: Pointer) {

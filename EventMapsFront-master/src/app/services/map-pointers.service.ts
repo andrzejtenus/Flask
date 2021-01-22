@@ -23,12 +23,12 @@ export class MapPointersService {
         return this.http.get<MyPointer[]>(`${environment.apiUrl}/api/getareapointers`, {headers, params});
     }
 
-  public getUserPointers(): Observable<MyPointer[]> {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-
-    return this.http.get<MyPointer[]>(`${environment.apiUrl}/api/getuserpointers`, {headers});
-  }
+    public getUserPointers(): Observable<MyPointer[]> {
+      const headers = new HttpHeaders();
+      headers.append('Content-Type', 'application/json');
+      const params = new HttpParams().set('id', localStorage.getItem('user'));
+      return this.http.get<MyPointer[]>(`${environment.apiUrl}/api/getuserpointers`, {headers, params});
+    }
 
     public addPointer(longitude: number, latitude: number, description: string): Observable<any> {
 
