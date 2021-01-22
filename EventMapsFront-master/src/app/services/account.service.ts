@@ -40,11 +40,14 @@ export class AccountService {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
         this.userSubject.next(null);
-        //this.router.navigate(['/account/login']);
+        this.router.navigate(['/account/login']);
     }
 
-    register(user: User) {
-        return this.http.post(`${environment.apiUrl}/users/register`, user);
+    //register(user: User) {
+    //    return this.http.post(`${environment.apiUrl}/api/register`, user);
+    //}
+    register(email: string, password: string) {
+        return this.http.post(`${environment.apiUrl}/api/register`, { email, password });
     }
 
     getAll() {

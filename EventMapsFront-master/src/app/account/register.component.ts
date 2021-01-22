@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router  } from '@angular/router';
 import {  AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AccountService} from "@app/services";
 
 @Component({ templateUrl: 'register.component.html',  styleUrls: ['./login.component.css'] })
 export class RegisterComponent implements OnInit {
@@ -10,6 +11,7 @@ export class RegisterComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
+        private accountService: AccountService
     ) { }
 
     get f() { return this.form.controls; }
@@ -31,7 +33,7 @@ export class RegisterComponent implements OnInit {
         // make sure it always returns a 'null' for valid or non-relevant cases, and a 'non-null' object for when an error should be raised on the formGroup
         if(!c) {return null}
         if(!c.value) {return null}
-        if(c.value.confirmPassword !== c.value.password) {          
+        if(c.value.confirmPassword !== c.value.password) {
             return {invalidPasswords: true}
         } else {
             return null
@@ -40,9 +42,10 @@ export class RegisterComponent implements OnInit {
 
     register() {
         this.submitted = true;
+
     }
 
     loginView() {
         this.router.navigate(['account/login']);
-    } 
+    }
 }

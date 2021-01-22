@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AccountService} from "@app/services";
+import {AccountService} from '@app/services';
 
 @Component({
   selector: 'app-header',
@@ -15,16 +15,11 @@ export class HeaderComponent implements OnInit {
   }
 
   mapView() {
-    this.router.navigate(['maps/main'])
+    this.router.navigate(['maps/main']);
   }
 
   myPointersView() {
-    this.router.navigate(['maps/mypointers'])
-  }
-
-  login(): void {
-    this.accountService.login('admin@email.com', 'andrzej');
-    console.log(localStorage.getItem('user'));
+    this.router.navigate(['maps/mypointers']);
   }
 
   logout(): void {
