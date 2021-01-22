@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+    <span>Map Events</span>
+        <span class="example-fill-remaining-space"></span>
+        <span class="align-center"></span>
+        <span class="example-spacer"></span>
+        <button mat-button>O aplikacji</button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click) = "mapView()">
+        <mat-icon>map</mat-icon>
+        <span>Mapa</span>
+      </button>
+      <button mat-menu-item (click) = "myPointersView()">
+        <mat-icon>list_alt</mat-icon>
+        <span>Moje znaczniki</span>
+      </button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Wyloguj</span>
+      </button>
+      <button (click)="login()" mat-menu-item>
+      <mat-icon>power_settings_new</mat-icon>
+      <span>Zaloguj</span>
+    </button>
+
+    </mat-menu>
+</mat-toolbar-row>
+
