@@ -49,7 +49,10 @@ export class MainmapComponent implements OnInit {
           for (const pointer of pointers) {
             if (that.pointers.findIndex(p => p.id === pointer.id) === -1) {
               L.marker([pointer.latitude, pointer.longitude]).addTo(that.map)
-                .bindPopup(pointer.description + '\n' + 'Likes: ' + pointer.likes);
+                .bindPopup(pointer.description + '\n' + 'Likes: ' + pointer.likes)
+              .addEventListener('dblclick', () => this.pointerService.addLike(pointer.id)
+                .subscribe(value => {console.log(value);
+              }));
               that.pointers.push(pointer);
             }
           }
@@ -69,7 +72,7 @@ export class MainmapComponent implements OnInit {
             (response) => {
               if (response.id > -1) {
                 L.marker([event.latlng.lat, event.latlng.lng]).addTo(that.map)
-                .bindPopup(result.description + '\n' + 'Likes: ' + 0);
+                  .bindPopup(result.description + '\n' + 'Likes: ' + 0);
                 that.pointers.push(
                   {
                     id: 0,

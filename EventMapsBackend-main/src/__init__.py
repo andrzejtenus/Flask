@@ -115,6 +115,23 @@ def addPointer():
     db.session.close()
     return jsonify({'result': status, 'id': id})
 
+@app.route('/api/addLike', methods=['PUT'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+def addLike():
+    json_data = request.json
+    user_id = int(request.args.get('user_id'))
+    id = int(request.args.get('id'))
+    pointer = Pointer.query.filter((Pointer.id == id)).first()
+    try:
+        pointer.likes = pointer.likes + 1
+        db.session.commit()
+        status = 'success'
+    except Exception as e:
+        status = 'Failed to add like'
+        print(e)
+    db.session.close()
+    return jsonify({'result': status, 'id': id})
+
 
 def unauthorized():
     response = jsonify({'message':'please log in'})
